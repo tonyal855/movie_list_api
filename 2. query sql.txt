@@ -1,0 +1,8 @@
+A. SELECT YEAR(`date_joined`),MONTH(date_joined),COUNT(*) FROM `auth_user` WHERE YEAR(`date_joined`) GROUP BY YEAR(`date_joined`), MONTH(`date_joined`)
+B. SELECT DATE_FORMAT(action_time, "%d-%M-%Y"), COUNT(*) FROM `activity_log` GROUP BY DATE_FORMAT(action_time, "%d-%M-%Y")
+C. SELECT AVG(a.total) FROM (SELECT created_at as ct, COUNT(*) as total FROM `fav_movie` GROUP BY DAY(created_at) ) as a
+D. SELECT fav_movie.id_user,auth_user.username, COUNT(*) FROM `fav_movie` INNER JOIN auth_user on fav_movie.id_user = auth_user.id GROUP BY fav_movie.id_user
+E. SELECT title,YEAR(`release_date`), MONTH(`release_date`) FROM `fav_movie` WHERE `popularity` > 14.0 GROUP BY id_movie
+
+
+

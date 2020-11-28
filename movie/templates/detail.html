@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container">
+    <!-- <h3>Detail Movie</h3> -->
+
+{%if movie%}
+    <div class="card">
+    <div class="card-body">
+        <div class="img">
+      <img class="card-img-top img-responsive rounded" src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" style="height: 450px;width: 350px;">
+    </div>
+    <h4>{{movie.title}} - {{movie.tagline}}</h4>
+    <p>{{movie.overview}}</p>
+    <p>Genre: {{movie.genres}}</p>
+    <p>Language: {{movie.original_language}}</p>
+    <p>Release Date: {{movie.release_date}}</p>
+    <p>Revenue: {{movie.revenue}}</p>
+    <p>Popularity: {{movie.popularity}}</p>
+    <p>Vote Average: {{movie.vote_average}}</p>
+    <p>Vote Count: {{movie.vote_count}}</p>
+    <p>Website: {{movie.homepage}}</p>
+    <!-- <a href="/" class="btn btn-lg btn-dark">Back</a> -->
+
+    <form method="post" action="/add_movie">
+        {% csrf_token %}  
+    <input type="hidden" value="{{movie.id}}" name="id_movie">
+    <input type="hidden" value="{{movie.title}}" name="title">
+    <input type="hidden" value="{{movie.orginal_title}}" name="orginal_title">
+    <input type="hidden" value="{{movie.overview}}" name="overview">
+    <input type="hidden" value="{{movie.tagline}}" name="tagline">
+    <input type="hidden" value="{{movie.vote_average}}" name="vote_average">
+    <input type="hidden" value="{{movie.release_date}}" name="release_date">
+    <input type="hidden" value="{{movie.genres}}" name="genres">
+    <input type="hidden" value="{{movie.original_language}}" name="original_language">
+    <input type="hidden" value="{{movie.poster_path}}" name="poster_path">
+    <input type="hidden" value="{{movie.homepage}}" name="homepage">
+    <input type="hidden" value="{{movie.popularity}}" name="popularity">
+    <input type="hidden" value="{{user.id}}" name="id_user">
+    <button type="submit" class="btn btn-lg btn-primary">Add Favorite</button>
+    </form>
+    </div>
+  </div>
+{%endif%}
+</div>
+
+
+{% endblock %}
+

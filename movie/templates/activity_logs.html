@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container">
+    <h3>Activity Logs</h3>
+
+    <table class="table table-sm">
+        <thead>
+            
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Username</th>
+            <th scope="col">Action Time</th>
+            <th scope="col">Content Type</th>
+            <th scope="col">Action Flag</th>
+          </tr>
+        </thead>
+        <tbody>
+            {%for log in logs%}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            {%if log.user == None%}
+                <td>Guest</td>
+            {%else%}
+                <td>{{log.user}}</td>
+            {%endif%}
+            <td>{{log.action_time}}</td>
+            <td>{{log.content_type}}</td>
+            <td>{{log.action_flag}}</td>
+          </tr>
+          {%endfor%}
+
+        </tbody>
+      </table>
+</div>
+
+
+{% endblock %}
+
